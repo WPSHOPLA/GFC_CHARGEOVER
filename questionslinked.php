@@ -42,7 +42,7 @@ include('templates/default/header.php');
 					</div>
 						
 						<div class="form-actions form-group ">
-							<button type="submit" name="question_search" class="full-width" value="submit">Search</button>
+							<button type="submit" name="question_search" class="pri_button full-width" value="submit">Search</button>
 						</div>
 					</form>					
 				</div>

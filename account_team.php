@@ -105,7 +105,7 @@ include('templates/default/header.php');
 						<br />
 						
 						<div class="form-actions form-group ">
-							<input type="submit" name="invite_email_submit" class="full-width" value="Invite">
+							<input type="submit" name="invite_email_submit" class="pri_button full-width" value="Invite">
 						</div>
 				</form>
 				

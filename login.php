@@ -29,7 +29,7 @@ if (!empty($_POST['login_submit'])) {
 
 include('templates/default/header.php');
 ?>
-<div class="container-fluid content">
+<div class="container-fluid content form-only-content">
 	<div class="main-container">
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 			<div class="login-form">
@@ -53,7 +53,7 @@ include('templates/default/header.php');
 					</div>-->
 
 					<div class="form-actions form-group ">
-						<input type="submit" name="login_submit" class="full-width" value="Login">
+						<input type="submit" name="login_submit" class="pri_button full-width" value="Login">
 					</div>
 				</form>
 

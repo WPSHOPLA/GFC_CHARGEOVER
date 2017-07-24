@@ -134,7 +134,7 @@ include('templates/default/header.php');
 					
 					
 					<div class="form-actions form-group ">
-						<button type="submit" name="question_submit" class="full-width" value="submit">Create Question</button>
+						<button type="submit" name="question_submit" class="pri_button full-width" value="submit">Create Question</button>
 					</div>
 				</form>
 			</div>

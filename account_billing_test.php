@@ -696,7 +696,7 @@ include('templates/default/header.php');
 								
 								echo '<input type="hidden" name="creditcard_id" value="' . $card->creditcard_id . '">
 								<div class="form-actions form-group ">
-									<input type="submit" name="card_delete_submit" class="full-width" value="Delete">
+									<input type="submit" name="card_delete_submit" class="pri_button full-width" value="Delete">
 								</div>
 							</form>';
 					}
@@ -744,7 +744,7 @@ include('templates/default/header.php');
 							</div>
 							
 							<div class="form-actions form-group ">
-								<input type="submit" name="card_add_submit" class="full-width" value="Add Card">
+								<input type="submit" name="card_add_submit" class="pri_button full-width" value="Add Card">
 							</div>
 						</form>';
 				}*/

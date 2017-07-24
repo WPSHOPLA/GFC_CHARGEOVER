@@ -127,7 +127,7 @@ include('templates/default/header.php');
 					</div>
 
 					<div class="form-actions form-group ">
-						<button type="submit" name="pdf_upload" class="full-width" value="submit">Upload</button>
+						<button type="submit" name="pdf_upload" class="pri_button full-width" value="submit">Upload</button>
 					</div>
 					
 					<div class="progress-bars" style="display: none;">

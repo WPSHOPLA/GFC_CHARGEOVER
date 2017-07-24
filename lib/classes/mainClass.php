@@ -1,9 +1,10 @@
 <?php
 class mainClass {
+
 	public function getStates() {
 		try {
 			$db = getDB();
-			$stmt = $db->prepare("SELECT id, name, short_name FROM states");
+			$stmt = $db->prepare("SELECT id, name, short_name, team_price, personal_price, status FROM states");
 				
 			$stmt->execute();
 			$data = $stmt->fetchAll(); //User data
@@ -20,6 +21,29 @@ class mainClass {
 			echo '{"error":{"text":' . $e->getMessage() . '}}';
 		}
 	}
+
+
+
+    public function getActiveStates() {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("SELECT id, name, short_name, team_price, personal_price, status FROM states where status=TRUE");
+
+            $stmt->execute();
+            $data = $stmt->fetchAll(); //User data
+
+            //print_r($data);
+            $data_new = [];
+            foreach($data as $d) {
+                $data_new[$d['id']] = $d;
+            }
+            //print_r($data_new);
+            return $data_new;
+
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
 	
 	public function getExtraUsersTiers() {
 		return [0, 5, 10, 20, 50, 100];

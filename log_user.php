@@ -30,7 +30,7 @@ include('templates/default/header.php');
 						</div>
 						
 						<div class="form-actions form-group ">
-							<button type="submit" name="log_user" class="full-width" value="submit">Show Log</button>
+							<button type="submit" name="log_user" class="pri_button full-width" value="submit">Show Log</button>
 						</div>
 					</form>					
 				</div>

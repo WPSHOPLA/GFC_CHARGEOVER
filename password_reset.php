@@ -67,7 +67,7 @@ include('templates/default/header.php');
 					</div>
 
 					<div class="form-actions form-group ">
-						<input type="submit" name="reset_submit" class="full-width" value="Reset">
+						<input type="submit" name="reset_submit" class="pri_button full-width" value="Reset">
 					</div>
 				</form>
 

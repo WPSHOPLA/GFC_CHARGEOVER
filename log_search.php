@@ -99,7 +99,7 @@ include('templates/default/header.php');
 						</script>
 						
 						<div class="form-actions form-group ">
-							<button type="submit" name="log_search" class="full-width" value="submit">Show Log</button>
+							<button type="submit" name="log_search" class="pri_button full-width" value="submit">Show Log</button>
 						</div>
 					</form>					
 				</div>

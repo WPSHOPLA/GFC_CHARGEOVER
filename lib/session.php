@@ -5,5 +5,5 @@ if(!empty($_SESSION['uid'])) {
 } else {
 	$session_uid = -1;
 }
-session_write_close();
+//session_write_close();
 ?>

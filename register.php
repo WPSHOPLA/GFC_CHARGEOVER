@@ -131,7 +131,7 @@ if (!empty($_POST['register_submit'])) {
             /*if(!$invited)
                 $userClass->addSubscriptionLocations($uid, $locations);*/
 
-            $url = BASE_URL . 'search.php';
+            $url = BASE_URL . 'end_signup.php';
             header("Location: $url"); // Page redirecting to login.php
             exit();
         }
@@ -157,6 +157,15 @@ include('templates/default/header.php');
                         ?>
 
                         <div class="h1 text-blue">Sign Up</div>
+
+                        <p class="text-info">
+                            GoFetchCode provides answers to your Building Code-related questions in a snap.
+                            <br>As soon as you fill in the form on this page and subscribe, your free trial account will
+                            start.
+                            After 7 days, simply subscribe to one of our paid plans and keep using GoFetchCode for
+                            your building code needs.
+                            <br>Register now and get immediate and free access to the GoFetchCode search engine.
+                        </p>
 
                         <form name="form" method="post">
                             <div class="row">

@@ -77,6 +77,8 @@ class userClass
                 return 'EMAIL_ALREADY_EXISTS';
             }
 
+            //allow 1 week for free trial
+
             if (!$invited) {
                 //$stmt = $db->prepare("INSERT INTO users(username, password, email, extra_users, owner_id) VALUES (:username, :md5_password, :email, :extra_users, -1)");
                 $stmt = $db->prepare("INSERT INTO users(username, password, email, first_name, last_name, owner_id, phone, org_name, sub_status) VALUES (:username, :md5_password, :email, :first_name, :last_name, -1, :phone, :org_name,  'x')");

@@ -2,90 +2,121 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 md-margin-bottom-40">
-                    <a href="<?php echo BASE_URL; ?>">
+                <div class="col-md-4 md-margin-bottom-40">
+                    <div class="headline">
+                        <h2>ABOUT US</h2>
+                    </div>
+                    <a href="<?php echo BASE_URL; ?>" class="img_href">
                         <img src="<?php echo BASE_URL; ?>/assets/img/ibm_watson_partner.png"
-                             alt="IBM Watson Ecosystem Partner logo"
-                             width="250">
-                        <p>
+                             alt="IBM Watson Ecosystem Partner logo">
+                        <p class="symb">
                             GoFetchCode is a partnership of IBM Watson and ENGEO, a leading provider of geotechnical,
-                            environmental, and hydrologic engineering, with over 45 years of experience navigating
-                            building codes and the construction industry.
+                            environmental, and hydrological engineering.
                         </p>
+                        <p>Official ICC Building Codes are a feature of GoFetchCode.</p>
                 </div>
 
-                <div class="col-md-3 md-margin-bottom-40">
+                <div class="col-md-4 md-margin-bottom-40">
                     <div class="posts">
                         <div class="headline">
-                            <h2>Latest Posts</h2>
+                            <h2>LATEST POSTS</h2>
                         </div>
                         <ul class="list-unstyled latest-list">
                             <li>
-                                <a href="http://www.gofetchcode.com/international-building-code-references/">International
-                                    Building Code References</a>
-                                <span class="post-date">March 16, 2017</span>
+                                <a href="https://www.gofetchcode.com/oshas-top-10-violations-construction-industry/">OSHA’s
+                                    Top 10 Most Cited Violations for the Construction Industry</a>
+                                <span class="post-date">July 20, 2017</span>
                             </li>
                             <li>
-                                <a href="http://www.gofetchcode.com/web-based-construction-management-software/">Web
-                                    Based Construction Management Software</a>
-                                <span class="post-date">March 8, 2017</span>
+                                <a href="https://www.gofetchcode.com/international-building-code-2015/">The
+                                    International Building Code (2015)</a>
+                                <span class="post-date">July 7, 2017</span>
                             </li>
                             <li>
-                                <a href="http://www.gofetchcode.com/7-top-time-management-tips-for-architects/">7 Top
-                                    Time Management Tips for Architects</a>
-                                <span class="post-date">February 28, 2017</span>
+                                <a href="https://www.gofetchcode.com/safe-and-effective-subcontractor-management/">Safe
+                                    and Effective Subcontractor Management</a>
+                                <span class="post-date">June 20, 2017</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-md-3 md-margin-bottom-40">
+                <div class="col-md-4 map-img md-margin-bottom-40">
                     <div class="headline">
-                        <h2>Useful Links</h2>
+                        <h2>LINKS & CONTACT</h2>
                     </div>
-                    <ul class="list-unstyled link-list">
-                        <li><a href="<?php echo 'http://www.gofetchcode.com/about-us'; ?>" target="_blank">About
-                                us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a href="http://www.engeo.com" target="_blank">Engeo Inc</a><i
-                                class="fa fa-angle-right"></i></li>
-                    </ul>
-                </div>
+                    <div class="textwidget">
+                        <p>
+                            <a style="color: #a2a2a2;" href="https://www.gofetchcode.com/about-us" target="_blank"
+                               rel="noopener">ABOUT US</a><br>
+                            <a style="color: #a2a2a2;" href="http://www.ibm.com/watson/" target="_blank" rel="noopener">IBM
+                                WATSON</a><br>
+                            <a style="color: #a2a2a2;" href="http://www.engeo.com/" target="_blank" rel="noopener">ENGEO
+                                INC</a>
+                        </p>
+                        <address class="md-margin-bottom-40" style="margin-top: 10px;">Address: 2010 Crow Canyon Place,
+                            Suite 250 San Ramon, CA 94583-4634<br>
+                            T: (925) 866-9000<br>
+                            <a style="margin-left: -8px;" href="mailto:marketing@gofetchcode.com" target="_top"><img
+                                    style="width: 180px; margin-top: 10px;"
+                                    src="<?php echo BASE_URL; ?>/assets/img/info.png"></a>
+                        </address>
 
-                <div class="col-md-3 map-img md-margin-bottom-40">
-                    <div class="headline">
-                        <h2>Contact Us</h2>
+                        <ul class="footer-socials" style="text-align: left">
+                            <li class="social-icon">
+                                <a class="" rel="nofollow" title="Twitter"
+                                   aria-label="Twitter" href="http://twitter.com/gofetchcode"
+                                   target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="social-icon">
+                                <a class="" rel="nofollow" title="LinkedIn"
+                                   aria-label="LinkedIn"
+                                   href="https://www.linkedin.com/company/gofetchcode"
+                                   target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <address class="md-margin-bottom-40">
-                        2010 Crow Canyon Place, Suite 250
-                        <br/>
-                        San Ramon, CA 94583-4634
-                        <br/>
-                        T: (925) 866-9000
-                        <br/>
-                        Email: <a href="mailto:info@engeo.com" class="">info@engeo.com</a>
-                    </address>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Start of gofetchcode Zendesk Widget script -->
-    <!--    <script>/*<![CDATA[*/-->
-    <!--        window.zEmbed || function (e, t) {-->
-    <!--            var n, o, d, i, s, a = [], r = document.createElement("iframe");-->
-    <!--            window.zEmbed = function () {-->
-    <!--                a.push(arguments)-->
-    <!--            }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document;-->
-    <!--            try {-->
-    <!--                o = s-->
-    <!--            } catch (e) {-->
-    <!--                n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s-->
-    <!--            }-->
-    <!--            o.open()._l = function () {-->
-    <!--                var o = this.createElement("script");-->
-    <!--                n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)-->
-    <!--            }, o.write('<body onload="document._l();">'), o.close()-->
-    <!--        }("https://assets.zendesk.com/embeddable_framework/main.js", "gofetchcode.zendesk.com");-->
-    <!--        /*]]>*/</script>-->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        2017 &copy; All Rights Reserved.
+                        <a href="<?php echo BASE_URL . 'privacypolicy.php'; ?>">Privacy Policy</a> | <a
+                            href="<?php echo BASE_URL . 'termsofservice.php'; ?>">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--     Start of gofetchcode Zendesk Widget script-->
+    <script>/*<![CDATA[*/
+        window.zEmbed || function (e, t) {
+            var n, o, d, i, s, a = [], r = document.createElement("iframe");
+            window.zEmbed = function () {
+                a.push(arguments)
+            }, window.zE = window.zE || window.zEmbed, r.src = "javascript:false", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "display: none", d = document.getElementsByTagName("script"), d = d[d.length - 1], d.parentNode.insertBefore(r, d), i = r.contentWindow, s = i.document;
+            try {
+                o = s
+            } catch (e) {
+                n = document.domain, r.src = 'javascript:var d=document.open();d.domain="' + n + '";void(0);', o = s
+            }
+            o.open()._l = function () {
+                var o = this.createElement("script");
+                n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)
+            }, o.write('<body onload="document._l();">'), o.close()
+        }("https://assets.zendesk.com/embeddable_framework/main.js", "gofetchcode.zendesk.com");
+        /*]]>*/</script>
     <script type="text/javascript">
         (function (e, t) {
             var n = e.amplitude || {_q: [], _iq: {}};
@@ -178,19 +209,7 @@
     </noscript>
 
     <!-- End of gofetchcode Zendesk Widget script -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>
-                        2017 &copy; All Rights Reserved.
-                        <a href="<?php echo BASE_URL . 'privacypolicy.php'; ?>">Privacy Policy</a> | <a
-                            href="<?php echo BASE_URL . 'termsofservice.php'; ?>">Terms of Service</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 </div>
 </body>

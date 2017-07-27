@@ -9509,13 +9509,11 @@ h2.heading-md {
     margin: 0 0 -2px 0;
     padding-bottom: 5px;
     display: inline-block;
-    border-bottom: 2px solid #72c02c
 }
 
 .headline {
     display: block;
-    margin: 10px 0 25px 0;
-    border-bottom: 1px dotted #e4e9f0
+    margin: 10px 0 35px 0;
 }
 
 .headline h2 {
@@ -10072,7 +10070,7 @@ body.nav-open {
 
 figure img,
 img {
-    max-width: 250px
+    max-width: 100%;
 }
 
 .search-page {
@@ -12037,7 +12035,7 @@ table tr th {
 }
 
 .latest-list li {
-    border-top: 1px solid #353535;
+    border-bottom: 1px solid #353535;
     padding: 8px 0
 }
 
@@ -12089,19 +12087,66 @@ table tr th {
     color: #eee
 }
 
+.footer-v1 a img{
+    margin-bottom: 10px;
+}
+
+.footer-v1 a.img_href:hover{
+    text-decoration: none;
+}
+
 .footer-v1 .footer {
-    padding: 40px 0;
-    background: #272727
+    padding: 70px 0;
+    background: #212121;
+}
+
+.footer-v1 .footer .container {
+    width: 95%;
+}
+
+.footer-v1 .footer .row .col-md-4 {
+    padding-left: 3%;
+    padding-right: 3%;
+    border-right: 1px solid #3b3b3b;
+}
+
+.footer-v1 .footer .row .col-md-4:last-child {
+    border-right: 0;
 }
 
 .footer-v1 .footer p {
-    color: #eee
+    color: #aeaeae !important;
+    font-size: 14px;
+}
+
+.footer-v1 .footer p.symb {
+    font-size: 14px !important;
+    color: #7f7f7f !important;
+}
+
+.footer-v1 .textwidget {
+    color: #a2a2a2;
+}
+
+.footer-v1 .latest-list li a {
+    color: #aeaeae;
+    font-size: 14px;
+}
+
+.footer-v1 .latest-list li a:hover {
+    color: #fff;
+}
+
+.footer-v1 .post-date {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .footer-v1 .footer h2 {
     color: #eee;
-    font-size: 18px;
-    font-weight: 200
+    font-size: 20px;
+    font-weight: 800
 }
 
 .footer-v1 .link-list li {
@@ -12116,7 +12161,10 @@ table tr th {
 }
 
 .footer-v1 address {
-    line-height: 23px
+    line-height: 15px;
+    font-style: italic;
+    color: #a2a2a2;
+    font-size: 14px;
 }
 
 .footer-v1 .footer .map-img {
@@ -12124,30 +12172,40 @@ table tr th {
 }
 
 .footer-v1 .copyright {
-    background: #222;
+    background: #303030;
     border-top: none;
     padding: 10px 0 5px
 }
 
 .footer-v1 .copyright p {
-    color: #eee;
+    color: #aeaeae;
+    font-size: 14px;
     margin-top: 14px
 }
 
 .footer-v1 .copyright a,
 .footer-v1 .copyright .pseudo-link {
+    color: #ffffff;
     margin: 0 2px
 }
 
 .footer-v1 .footer-socials {
     margin-top: 12px;
-    text-align: right
+    text-align: right;
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-v1 .footer-socials li {
+    display: inline-block;
 }
 
 .footer-v1 .footer-socials li a,
 .footer-v1 .footer-socials li .pseudo-link {
-    color: #777;
-    font-size: 16px
+    font-size: 16px;
+    padding: 8px 9px;
+    background-color: #606060;
+    color: #c9c9c9;
 }
 
 @media (max-width: 991px) {

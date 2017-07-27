@@ -248,6 +248,17 @@
 
                         <ul class="list-unstyle">
                             <li>
+
+                                <?php if (isStaff()) { ?>
+                                    <a onclick="$(this).next('ul').toggleClass('collapse');">
+                                        <i class="fa fa-cogs" aria-hidden="true"></i> Management<span
+                                            class="caret"></span></a>
+                                    <ul class="list-unstyle cbc-chapters-list collapse">
+                                        <li class="ng-scope"><a href="<?php echo BASE_URL . 'manage_states.php'; ?>">States</a>
+                                        </li>
+                                    </ul>
+                                <?php } ?>
+
                                 <a onclick="$(this).next('ul').toggleClass('collapse');"><i
                                         class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;Questions<span
                                         class="caret"></span></a>
@@ -267,6 +278,7 @@
                                                 Questions CSV</a></li>
                                     <?php } ?>
                                 </ul>
+
                                 <?php if (isStaff()) { ?>
                                     <a onclick="$(this).next('ul').toggleClass('collapse');"><i class="fa fa-file"
                                                                                                 aria-hidden="true"></i>&nbsp;&nbsp;Documents<span

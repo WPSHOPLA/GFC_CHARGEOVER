@@ -128,6 +128,19 @@ function existSubscription()
     }
 }
 
+function isAdmin()
+{
+    global $userClass, $userDetails;
+
+    if (!isLoggedIn())
+        return false;
+
+    if (isSubAccount())
+        return $userClass->userDetails($userDetails->owner_id)->access == 3;
+
+    return $userDetails->access == 3;
+}
+
 function isStaff()
 {
     global $userClass, $userDetails;

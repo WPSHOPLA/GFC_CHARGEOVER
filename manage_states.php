@@ -13,6 +13,8 @@ global $mainClass;
 $states = $mainClass->getStates();
 $state_count = count($states);
 
+$state_count = 0;
+
 include('templates/default/header.php');
 ?>
     <div class="container-fluid content">
@@ -257,7 +259,9 @@ include('templates/default/header.php');
                                 $i++;
                             }
                         } else { ?>
-                            <tr> There are no states to manage.</tr>
+                            <tr>
+                                <td colspan="100%">There are no states to manage.</td>
+                            </tr>
                         <?php } ?>
                         </tbody>
                     </table>

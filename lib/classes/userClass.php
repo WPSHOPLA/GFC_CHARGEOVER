@@ -790,6 +790,87 @@ class userClass
             echo '{"error":{"text":' . $e->getMessage() . '}}';
         }
     }
+
+
+    public function updateSubscriptionStatusInfo($uid, $sub_status)
+    {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("UPDATE users SET sub_status=:status WHERE id=:uid");
+            $stmt->bindParam("uid", $uid, PDO::PARAM_INT);
+            $stmt->bindParam("status", $sub_status, PDO::PARAM_STR);
+            $stmt->execute();
+            $db = null;
+
+            return true;
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+
+    public function updateSubscriptionInfo_with_db($db, $uid, $sub_status, $package_id)
+    {
+        try {
+
+            $stmt = $db->prepare("UPDATE users SET sub_status=:status, sub_id=:package_id WHERE id=:uid");
+            $stmt->bindParam("uid", $uid, PDO::PARAM_INT);
+            $stmt->bindParam("status", $sub_status, PDO::PARAM_STR);
+            $stmt->bindParam("package_id", $package_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+
+    public function updateSubscriptionStatusInfo_with_db($db, $uid, $sub_status)
+    {
+        try {
+
+            $stmt = $db->prepare("UPDATE users SET sub_status=:status WHERE id=:uid");
+            $stmt->bindParam("uid", $uid, PDO::PARAM_INT);
+            $stmt->bindParam("status", $sub_status, PDO::PARAM_STR);
+            $stmt->execute();
+            return true;
+
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+
+    //get all user info
+    public function getAllUsersInfo()
+    {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("SELECT * FROM users");
+            $stmt->execute();
+            $data = $stmt->fetchAll(); //User data
+            $db = null;
+            return $data;
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+    public function getAllUsersInfo_first_staff()
+    {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("SELECT * FROM users Order BY access DESC");
+            $stmt->execute();
+            $data = $stmt->fetchAll(); //User data
+            $db = null;
+            return $data;
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
 }
 
 ?>

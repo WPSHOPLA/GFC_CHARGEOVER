@@ -143,7 +143,7 @@ include('templates/default/header.php');
     <div class="container-fluid content form-only-content">
         <div class="main-container">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                <div class="login-form">
+                <div class="signup-form">
                     <?php echo $notifyMsgRegister; ?>
 
                     <?php
@@ -157,15 +157,6 @@ include('templates/default/header.php');
                         ?>
 
                         <div class="h1 text-blue">Sign Up</div>
-
-                        <p class="text-info">
-                            GoFetchCode provides answers to your Building Code-related questions in a snap.
-                            <br>As soon as you fill in the form on this page and subscribe, your free trial account will
-                            start.
-                            After 7 days, simply subscribe to one of our paid plans and keep using GoFetchCode for
-                            your building code needs.
-                            <br>Register now and get immediate and free access to the GoFetchCode search engine.
-                        </p>
 
                         <form name="form" method="post">
                             <div class="row">
@@ -262,7 +253,7 @@ include('templates/default/header.php');
                             <?php } ?>
 
                             <div class="form-group">
-                                <label><input type="checkbox" id="agree">&emsp; I agree to <a href="termsofservice.php"
+                                <label><input type="checkbox" id="agree">&emsp; I agree to the <a href="termsofservice.php"
                                                                                               target="_blank">GofetchCode
                                         Terms and Conditions</a></label>
                             </div>
@@ -270,10 +261,19 @@ include('templates/default/header.php');
                             <div class="form-actions form-group ">
                                 <input type="submit" name="register_submit" class="pri_button full-width" disabled
                                        id="signup_submit"
-                                       value="Sign up for free trial">
+                                       value="Sign up for a free trial">
                             </div>
 
                         </form>
+
+                        <p class="text-info">
+                            GoFetchCode provides answers to your Building Code-related questions in a snap.
+                            <br><br>As soon as you fill in the form on this page and subscribe, your free trial account will
+                            start.
+                            After 7 days, simply subscribe to one of our paid plans and keep using GoFetchCode for
+                            your building code needs.
+                            <br><br>Register now and get immediate and free access to the GoFetchCode search engine.
+                        </p>
                     <?php } ?>
 
                 </div>

@@ -257,6 +257,9 @@
                                     <ul class="list-unstyle cbc-chapters-list collapse">
                                         <li class="ng-scope"><a href="<?php echo BASE_URL . 'manage_states.php'; ?>">States</a>
                                         </li>
+                                        <li class="ng-scope"><a
+                                                href="<?php echo BASE_URL . 'view_users.php'; ?>">Users</a>
+                                        </li>
                                     </ul>
                                 <?php } ?>
 

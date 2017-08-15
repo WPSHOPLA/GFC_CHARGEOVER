@@ -15,7 +15,6 @@ if($package_id)
         if (count($subscriptions->subscription) > 0) {
 
             $currentSubscription = $subscriptions->subscription[0];
-
             $get_subscription = true;
 
             /*
@@ -220,7 +219,10 @@ if($package_id)
                 $package_id = $currentSubscription->package_id;
 
             } else if ($sub_status_state == "c") {
-                $cancel_date_time = date('F j, Y', strtotime($currentSubscription->cancel_datetime));
+                $cancel_date_time = '';
+                if($currentSubscription->cancel_datetime){
+                    $cancel_date_time = date('F j, Y', strtotime($currentSubscription->cancel_datetime));
+                }
             }
 
 

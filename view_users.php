@@ -216,7 +216,7 @@ include('templates/default/header.php');
                     </div>
 
 
-                    <table class="user_table">
+                    <table class="user_table" id="usertable">
                         <thead>
                         <tr>
                             <th class="no">No</th>
@@ -289,18 +289,24 @@ include('templates/default/header.php');
                                     </td>
                                     <!--td data-name="sub_id"><?php echo $user['sub_id']; ?></td-->
                                     <td data-stateid="<?php echo $user['id']; ?>" class="actions">
-                                        <i class="fa fa-download fa-wx sync_user action"
-                                           data-coid="<?php echo $user['co_customer_id']; ?>"
-                                           data-uid="<?php echo $user['id']; ?>"
-                                        ></i>
+                                        <button class="action sync_user" title="Sync"
+                                                data-coid="<?php echo $user['co_customer_id']; ?>"
+                                                data-uid="<?php echo $user['id']; ?>">
+                                            <i class="fa fa-download fa-wx"></i>
+                                        </button>
 
-                                        <!--                                        <i class="fa fa-edit fa-2x edit_state"></i>-->
-                                        <!--                                        <i class="fa fa-trash fa-2x remove_state"></i>-->
-                                        <!--                                        <i class="fa fa-check-square fa-2x deactivate_state -->
-                                        <?php //if (!$state['status']) echo 'hidden' ?><!--"></i>-->
-                                        <!--                                        <i class="fa fa-square-o fa-2x activate_state -->
-                                        <?php //if ($state['status']) echo 'hidden' ?><!--"></i>-->
+                                        <?php if ($user['access'] == '100') { ?>
+                                            <button class="action make_customer_user"
+                                                    data-uid="<?php echo $user['id']; ?>" title="Make User">
+                                                <i class="fa fa-user-secret"></i>
+                                            </button>
 
+                                        <?php } else { ?>
+                                            <button class="action make_staff_user" data-uid="<?php echo $user['id']; ?>"
+                                                    title="Make Staff">
+                                                <i class="fa fa-user"></i>
+                                            </button>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php
@@ -313,7 +319,7 @@ include('templates/default/header.php');
                         <?php } ?>
                         </tbody>
                     </table>
-
+                    <div id="paging-first-datatable" class="paging"></div>
                 </div>
             </div>
         </div>
@@ -341,7 +347,7 @@ include('templates/default/header.php');
 
             $.ajax({
                 url: 'manage_users.php',
-                type: 'POST',
+                type: 'GET',
                 data: data,
                 success: function (response) {
 
@@ -362,38 +368,109 @@ include('templates/default/header.php');
             })
         }
 
+        $(document).ready(function () {
 
-        $('.sync_user').click(function () {
+            $('#usertable').on('click', '.sync_user', function () {
 
-            if (loading) {
-                alert('Please wait until Syncing Subscription Info would be finished.')
-                return;
-            }
-
-
-            var user_id = $(this).data('uid');
-            var customer_id = $(this).data('coid');
-            var data = "user_id=" + user_id + "&customer_id=" + customer_id + "&action=sync_user";
-
-            $.ajax({
-                url: 'manage_users.php',
-                type: 'POST',
-                data: data,
-                success: function (response) {
-                    console.log(response);
-
-                    if (response == "success") {
-                        //alert('State Removed');
-                        window.location.reload();
-                    } else {
-                        alert(response);
-                    }
-                },
-                error: function () {
-                    alert("While Syncing Users, Error Occurred, Please try again later.");
+                if (loading) {
+                    alert('Please wait until Syncing Subscription Info would be finished.');
+                    return;
                 }
-            })
-        })
+
+
+                var user_id = $(this).data('uid');
+                var customer_id = $(this).data('coid');
+                var data = "user_id=" + user_id + "&customer_id=" + customer_id + "&action=sync_user";
+
+                $.ajax({
+                    url: 'manage_users.php',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+
+                        if (response == "success") {
+                            //alert('State Removed');
+                            window.location.reload();
+                        } else {
+                            alert(response);
+                        }
+                    },
+                    error: function () {
+                        alert("While Syncing Users, Error Occurred, Please try again later.");
+                    }
+                })
+            });
+
+            $('#usertable').on('click', '.make_customer_user', function () {
+
+                if (loading) {
+                    alert('Please wait until Syncing Subscription Info would be finished.');
+                    return;
+                }
+
+                var user_id = $(this).data('uid');
+                var data = "user_id=" + user_id + "&action=make_customer_user";
+
+                $.ajax({
+                    url: 'manage_users.php',
+                    type: 'GET',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+
+                        if (response == "success") {
+                            //alert('State Removed');
+                            window.location.reload();
+                        } else {
+                            alert(response);
+                        }
+                    },
+                    error: function () {
+                        alert("While Updating user as customer, Error Occurred, Please try again later.");
+                    }
+                })
+            });
+
+
+            $('#usertable').on('click', '.make_staff_user', function () {
+
+                if (loading) {
+                    alert('Please wait until Syncing Subscription Info would be finished.');
+                    return;
+                }
+
+                var user_id = $(this).data('uid');
+                var data = "user_id=" + user_id + "&action=make_staff_user";
+
+                $.ajax({
+                    url: 'manage_users.php',
+                    type: 'GET',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+
+                        if (response == "success") {
+                            //alert('State Removed');
+                            window.location.reload();
+                        } else {
+                            alert(response);
+                        }
+                    },
+                    error: function () {
+                        alert("While Updating user as staff, Error Occurred, Please try again later.");
+                    }
+                })
+            });
+
+            //datatable
+            $('#usertable').datatable({
+                pageSize: 20,
+                sort: [true, true, false, false, true, false, false, false, false, false, false],
+                filters: [false, true, true, 'select', true, false, false, false, false, false, 'select'],
+                filterText: 'Type to filter... '
+            });
+        });
 
     </script>
 <?php include('templates/default/footer.php'); ?>

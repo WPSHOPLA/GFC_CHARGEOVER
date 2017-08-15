@@ -13,8 +13,6 @@ global $mainClass;
 $states = $mainClass->getStates();
 $state_count = count($states);
 
-$state_count = 0;
-
 include('templates/default/header.php');
 ?>
     <div class="container-fluid content">
@@ -201,7 +199,7 @@ include('templates/default/header.php');
             </div>
 
             <div class="row-fluid" style="padding-top: 30px;">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-2">
 
                     <div class="row">
                         <div class="col-md-8">

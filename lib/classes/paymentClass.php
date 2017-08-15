@@ -234,7 +234,7 @@ class paymentClass
         //$Package->setPaymethod('crd');
         $Package->setCreditcardId($card_id);
 
-        //$trial_days = 7;
+        $trial_days = 7;
 
         foreach ($item_ids as $item_id) {
             $LineItem = new ChargeOverAPI_Object_LineItem();

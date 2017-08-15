@@ -298,7 +298,7 @@ include('templates/default/header.php');
 				//scrollToActive();
 			}
 			
-			$('.result-block .overlay')[0].click();
+			//$('.result-block .overlay')[0].click();
 			
 			<?php if($view_bookmark) { ?>
 			

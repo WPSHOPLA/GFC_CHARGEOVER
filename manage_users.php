@@ -3,9 +3,11 @@ require_once('lib/init.php');
 
 global $session_uid, $userClass, $mailClass, $userDetails, $mainClass, $paymentClass;
 
-if (!empty($_POST['action'])) {
+if (!empty($_GET['action'])) {
 
-    if ($_POST['action'] == 'sync_users') {
+    $action = $_GET['action'];
+
+    if ($action == 'sync_users') {
 
         ini_set('max_execution_time', 300);
 
@@ -41,10 +43,10 @@ if (!empty($_POST['action'])) {
 
         echo "success";
 
-    } else if ($_POST['action'] == 'sync_user') {
+    } else if ($action == 'sync_user') {
 
-        $user_id = $_POST['user_id'];
-        $customer_id = $_POST['customer_id'];
+        $user_id = $_GET['user_id'];
+        $customer_id = $_GET['customer_id'];
 
         $subscriptions = $paymentClass->getSubscriptions($customer_id);
 
@@ -70,6 +72,57 @@ if (!empty($_POST['action'])) {
         } else {
             echo 'Could not catch Subscription info for this user.';
         }
+    } else if ($action == 'confirm_user') {
+        //get code
+        $code = $_GET['code'];
+        $uid = base64_decode($code);
+
+        $userDetails = $userClass->userDetails($uid);
+
+        $username = $userDetails->username;
+        $first_name = $userDetails->first_name;
+        $last_name = $userDetails->last_name;
+        $email = $userDetails->email;
+        $phone = $userDetails->phone;
+        $organization = $userDetails->org_name;
+
+        $co_customer_id = $paymentClass->createCustomer($uid, $username, $first_name, $last_name, $email, $phone, $organization);
+
+        if ($co_customer_id != -1) {
+
+            $stmtt = $db->prepare("UPDATE users SET co_customer_id=:co_customer_id WHERE id=:id");
+            $stmtt->bindParam("co_customer_id", $co_customer_id, PDO::PARAM_INT);
+            $stmtt->bindParam("id", $uid, PDO::PARAM_INT);
+            $stmtt->execute();
+
+        }
+
+        $_SESSION['uid'] = $uid;
+
+        $url = BASE_URL . 'subscription_create.php';
+        header("Location: $url"); // redirect to subscription create
+        exit();
+    } else if ($action == 'make_staff_user') {
+
+        $user_id = $_GET['user_id'];
+        $result = $userClass->update_as_staff($user_id);
+        if ($result == true) {
+            echo 'success';
+        } else {
+            echo $result;
+        }
+
+
+    } else if ($action == 'make_customer_user') {
+
+        $user_id = $_GET['user_id'];
+        $result = $userClass->update_as_customer($user_id);
+        if ($result == true) {
+            echo 'success';
+        } else {
+            echo $result;
+        }
+
     }
 }
 

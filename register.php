@@ -2,6 +2,8 @@
 
 require('lib/init.php');
 
+global $userClass, $mainClass, $paymentClass;
+
 if (isLoggedIn()) {
     $url = BASE_URL . 'index.php';
     header("Location: $url"); // Page redirecting to home.php
@@ -73,7 +75,7 @@ if (!empty($_POST['register_submit'])) {
     $email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,10})$~i', $email);
     $password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
     $phone_check = preg_match('~^[0-9-() ]{10,20}$~i', $phone);
-    $organization_check = preg_match('~^[A-Za-z0-9_ ]{8,30}$~i', $organization);
+    $organization_check = preg_match('~^[A-Za-z0-9_ ]{1,30}$~i', $organization);
     //$extra_users_check = in_array($extra_users, $extra_users_tiers);
     //$locations_check = sizeof($locations) > 0 || $invited;
 
@@ -99,7 +101,7 @@ if (!empty($_POST['register_submit'])) {
         $errorMsgPhone = 'Must be 10 numbers at least.';
 
     if (!$organization_check)
-        $errorMsgOrg = 'Must be 8 characters at least.';
+        $errorMsgOrg = 'You Should give Organization Name.';
 
 
     /*if(!$extra_users_check)
@@ -118,17 +120,18 @@ if (!empty($_POST['register_submit'])) {
             $userRegistration = $userClass->userRegistration($username, $password, $email, $first_name, $last_name, $invite_code, $phone, $organization);
         }
 
-
-        if ($userRegistration === 'INVALID_INVITE_CODE') {
+        if ($userRegistration === 'INVALID_EMAIL_ADDRESS') {
+            $errorMsgEmail = 'Email is Invalid. Please use Valid Email.';
+        } else if ($userRegistration === 'INVALID_INVITE_CODE') {
             $notifyMsgRegister = $mainClass->alert('error', 'Invite code is invalid.');
         } else if ($userRegistration === 'USERNAME_ALREADY_EXISTS') {
             $errorMsgUsername = 'Username is already in use.';
         } else if ($userRegistration === 'EMAIL_ALREADY_EXISTS') {
             $errorMsgEmail = 'Email is already in use.';
         } else if ($userRegistration) {
-            $uid = $userRegistration;
-
-            /*if(!$invited)
+            /*
+             $uid = $userRegistration;
+              if(!$invited)
                 $userClass->addSubscriptionLocations($uid, $locations);*/
 
             $url = BASE_URL . 'end_signup.php';

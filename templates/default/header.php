@@ -14,25 +14,33 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="templates/default/css/main_new.css">
+    <link rel="stylesheet" href="assets/css/main_new.css">
 
-    <link rel="stylesheet" href="templates/default/css/font-awesome.min.css">
-    <link rel="stylesheet" href="templates/default/css/awesomplete.css"/>
-    <link rel="stylesheet" href="templates/default/css/daterangepicker.css"/>
-    <link rel="stylesheet" href="templates/default/css/jquery-confirm.min.css"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/awesomplete.css"/>
+    <link rel="stylesheet" href="assets/css/daterangepicker.css"/>
+    <link rel="stylesheet" href="assets/css/jquery-confirm.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap-multiselect.css"/>
 
-    <link rel="stylesheet" href="templates/default/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/datatable.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="assets/css/datatable-bootstrap.min.css" media="screen">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.cookie.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
 
-    <script src="templates/default/js/awesomplete.js"></script>
-    <script src="templates/default/js/jquery-confirm.min.js"></script>
+    <script src="assets/js/awesomplete.js"></script>
+    <script src="assets/js/jquery-confirm.min.js"></script>
+    <script src="assets/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="assets/js/datatable.min.js"></script>
+    <script type="text/javascript" src="assets/js/datatable.jquery.min.js"></script>
 
     <script>
         function toggleNavigation() {

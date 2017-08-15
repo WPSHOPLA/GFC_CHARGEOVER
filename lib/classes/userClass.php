@@ -103,14 +103,14 @@ class userClass
             if (!$invited) {
                 //include ROOT_DIR . '/lib/classes/paymentClass.php';
                 //$paymentClass = new paymentClass();
-                $co_customer_id = $paymentClass->createCustomer($uid, $username, $first_name, $last_name, $email, $phone, $organization);
+                //$co_customer_id = $paymentClass->createCustomer($uid, $username, $first_name, $last_name, $email, $phone, $organization);
 
-                if ($co_customer_id != -1) {
-                    $stmtt = $db->prepare("UPDATE users SET co_customer_id=:co_customer_id WHERE id=:id");
-                    $stmtt->bindParam("co_customer_id", $co_customer_id, PDO::PARAM_INT);
-                    $stmtt->bindParam("id", $uid, PDO::PARAM_INT);
-                    $stmtt->execute();
-                }
+//                if ($co_customer_id != -1) {
+//                    $stmtt = $db->prepare("UPDATE users SET co_customer_id=:co_customer_id WHERE id=:id");
+//                    $stmtt->bindParam("co_customer_id", $co_customer_id, PDO::PARAM_INT);
+//                    $stmtt->bindParam("id", $uid, PDO::PARAM_INT);
+//                    $stmtt->execute();
+//                }
             } else {
                 $st = $db->prepare("DELETE FROM user_invites WHERE user_id=:invited_by AND invite_code=:invite_code");
                 $st->bindParam("invite_code", $invite_code, PDO::PARAM_STR);
@@ -123,11 +123,17 @@ class userClass
 
             if ($_SERVER['HTTP_HOST'] != "localhost") {
 
+                $activation_code = base64_encode($uid);
+                //confirm url
+                $confirm_url = BASE_URL."manage_users.php?action=confirm_user&code=".$activation_code;
+
                 $mail_subject = 'Welcome to GoFetchCode';
 
                 $mail_content = 'Hey ' . $first_name . ' ' . $last_name . ' (' . $username . '), welcome to GoFetchCode!';
                 $mail_content .= '\r\n';
                 $mail_content .= 'Log in to www.gofetchcode.com to look for regulation or code.';
+                $mail_content .= '\r\n';
+                $mail_content .= 'Please verify your email address by clicking this. <a href="'.$confirm_url.'" target="_blank">Confirm my Account</a>';
                 $mail_content .= '\r\n\r\n';
                 $mail_content .= 'Do you have problems with this url? Contact out support team: info@gofetchcode.com';
 
@@ -866,6 +872,37 @@ class userClass
             $data = $stmt->fetchAll(); //User data
             $db = null;
             return $data;
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+    public function update_as_staff($uid)
+    {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("UPDATE users SET access='100' WHERE id=:uid");
+            $stmt->bindParam("uid", $uid, PDO::PARAM_INT);
+            $stmt->execute();
+            $db = null;
+            return true;
+
+        } catch (PDOException $e) {
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+    }
+
+
+    public function update_as_customer($uid)
+    {
+        try {
+            $db = getDB();
+            $stmt = $db->prepare("UPDATE users SET access='1' WHERE id=:uid");
+            $stmt->bindParam("uid", $uid, PDO::PARAM_INT);
+            $stmt->execute();
+            $db = null;
+            return true;
+
         } catch (PDOException $e) {
             echo '{"error":{"text":' . $e->getMessage() . '}}';
         }

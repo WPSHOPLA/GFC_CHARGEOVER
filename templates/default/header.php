@@ -268,6 +268,8 @@
                                         <li class="ng-scope"><a
                                                 href="<?php echo BASE_URL . 'view_users.php'; ?>">Users</a>
                                         </li>
+                                        <li class="ng-scope"><a href="<?php echo BASE_URL . 'view_plans.php'; ?>">Plans</a>
+                                        </li>
                                     </ul>
                                 <?php } ?>
 

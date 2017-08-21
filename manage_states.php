@@ -8,17 +8,44 @@ if (!isStaff()) {
     exit();
 }
 
-global $mainClass;
+global $mainClass, $paymentClass;
 
 $states = $mainClass->getStates();
 $state_count = count($states);
+
+//get plan, plan_price
+$plan_price_array = [];
+
+$items = $paymentClass->getCOPlans();
+if ($items->status == "success") {
+    $plans = $items->plans;
+
+    $plan_count = count($plans);
+
+    //plan id - price array
+    foreach ($plans as $plan) {
+        $plan_id = $plan->item_id;
+
+        $plan_name = $plan->name;
+
+        $plan_price = 0;
+
+        if ($plan->tiersets[0]->pricemodel == "uni") {
+            $plan_price = $plan->tiersets[0]->tiers[0]->amount;
+        } else {
+            $plan_price = $plan->tiersets[0]->base;
+        }
+
+        $plan_price_array[] = [$plan_id, $plan_name, $plan_price];
+    }
+}
 
 include('templates/default/header.php');
 ?>
     <div class="container-fluid content">
         <div class="main-container">
             <div class="row-fluid">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-2">
 
                     <form id="create_form" class="sub_form" method="POST" action="manage_settings.php"
                           style="display: none">
@@ -47,6 +74,26 @@ include('templates/default/header.php');
                                 </div>
                             </div>
 
+                            <div class="row form-group">
+                                <label class="col-md-4" for="new_team_plan">TEAM PLAN*</label>
+                                <div class="col-md-6">
+                                    <select class="form-control plan" name="new_team_plan" required id="new_team_plan"
+                                            data-htarget="new_team_price">
+                                        <?php
+                                        if (count($plan_price_array) > 0) {
+                                            echo '<option value="">Choose Plan...</option>';
+                                            foreach ($plan_price_array as $plan) {
+                                                echo '<option value="' . $plan[0] . '" data-price="' . $plan[2] . '">' . $plan[1] . '</option>';
+                                            }
+
+                                        } else {
+                                            echo '<option value="">There is no plan to Choose...</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="row form-group">
                                 <label class="col-md-4" for="new_team_price">TEAM PRICE*</label>
@@ -59,9 +106,29 @@ include('templates/default/header.php');
 
 
                             <div class="row form-group">
-                                <label class="col-md-4" for="new_personal_price">PERSONAL PRICE*</label>
+                                <label class="col-md-4" for="new_personal_plan">PERSONAL PLAN*</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="number" step="0.01" name="new_personal_price"
+                                    <select class="form-control plan" name="new_personal_plan" required id="new_personal_plan"
+                                            data-htarget="new_personal_price">
+                                        <?php
+                                        if (count($plan_price_array) > 0) {
+                                            echo '<option value="">Choose Plan...</option>';
+                                            foreach ($plan_price_array as $plan) {
+                                                echo '<option value="' . $plan[0] . '" data-price="' . $plan[2] . '">' . $plan[1] . '</option>';
+                                            }
+
+                                        } else {
+                                            echo '<option value="">There is no plan to Choose...</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-md-4" for="new_personal_price">PERSONAL PRICE</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="number" name="new_personal_price"
                                            placeholder="20.00"
                                            value="" required id="new_personal_price"/>
                                 </div>
@@ -141,24 +208,63 @@ include('templates/default/header.php');
 
 
                             <div class="row form-group">
-                                <label class="col-md-4" for="team_price">TEAM PRICE*</label>
+                                <label class="col-md-4" for="team_plan">TEAM PLAN*</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="number" step="0.01" name="team_price" value=""
-                                           placeholder="20.00"
-                                           required id="team_price"/>
+                                    <select class="form-control plan" name="team_plan" required id="team_plan"
+                                            data-htarget="team_price">
+                                        <?php
+                                        if (count($plan_price_array) > 0) {
+                                            echo '<option value="">Choose Plan...</option>';
+                                            foreach ($plan_price_array as $plan) {
+                                                echo '<option value="' . $plan[0] . '" data-price="' . $plan[2] . '">' . $plan[1] . '</option>';
+                                            }
+
+                                        } else {
+                                            echo '<option value="">There is no plan to Choose...</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-md-4" for="team_price">TEAM PRICE</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="number" name="team_price" value=""
+                                           placeholder="Price for Team" readonly
+                                           id="team_price"/>
                                 </div>
                             </div>
 
 
                             <div class="row form-group">
-                                <label class="col-md-4" for="personal_price">PERSONAL PRICE*</label>
+                                <label class="col-md-4" for="personal_plan">PERSONAL PLAN*</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="number" step="0.01" name="personal_price"
-                                           placeholder="20.00"
-                                           value="" required id="personal_price"/>
+                                    <select class="form-control plan" name="personal_plan" required id="personal_plan"
+                                            data-htarget="personal_price">
+                                        <?php
+                                        if (count($plan_price_array) > 0) {
+                                            echo '<option value="">Choose Plan...</option>';
+                                            foreach ($plan_price_array as $plan) {
+                                                echo '<option value="' . $plan[0] . '" data-price="' . $plan[2] . '">' . $plan[1] . '</option>';
+                                            }
+
+                                        } else {
+                                            echo '<option value="">There is no plan to Choose...</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 
+                            <div class="row form-group">
+                                <label class="col-md-4" for="personal_price">PERSONAL PRICE</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="number" name="personal_price"
+                                           placeholder="Price for Personal" readonly
+                                           value="" id="personal_price"/>
+                                </div>
+                            </div>
 
                             <div class="row form-group">
                                 <div class="col-md-4">
@@ -199,7 +305,7 @@ include('templates/default/header.php');
             </div>
 
             <div class="row-fluid" style="padding-top: 30px;">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
 
                     <div class="row">
                         <div class="col-md-8">
@@ -219,7 +325,9 @@ include('templates/default/header.php');
                             <th>State Name</th>
                             <th>Short Name</th>
                             <th>Team Price</th>
+                            <th>Plan For Team</th>
                             <th>Personal Price</th>
+                            <th>Plan For Personal</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -233,9 +341,16 @@ include('templates/default/header.php');
                                 <tr data-stateid="<?php echo $state['id']; ?>">
                                     <td><?php echo $i; ?></td>
                                     <td data-name="state_name"><?php echo $state['name']; ?></td>
-                                    <td data-name="short_name"><?php echo $state['short_name']; ?></td>
-                                    <td data-name="team_price"><?php echo $state['team_price']; ?></td>
-                                    <td data-name="personal_price"><?php echo $state['personal_price']; ?></td>
+                                    <td data-name="short_name"
+                                        class="text-center"><?php echo $state['short_name']; ?></td>
+                                    <td data-name="team_price"
+                                        class="text-center"><?php echo $state['team_price']; ?></td>
+                                    <td data-name="team_plan"
+                                        class="text-center"><?php echo $state['team_plan']; ?></td>
+                                    <td data-name="personal_price"
+                                        class="text-center"><?php echo $state['personal_price']; ?></td>
+                                    <td data-name="personal_plan"
+                                        class="text-center"><?php echo $state['personal_plan']; ?></td>
                                     <td data-name="state_status" class="status"
                                         data-status="<?php echo $state['status']; ?>"><?php if ($state['status']) {
                                             echo "Active";
@@ -285,14 +400,18 @@ include('templates/default/header.php');
             var state_id = $(tr).data('stateid');
             var state_name = $(tr).find('td[data-name="state_name"]').text();
             var short_name = $(tr).find('td[data-name="short_name"]').text();
+            var team_plan = $(tr).find('td[data-name="team_plan"]').text();
             var team_price = $(tr).find('td[data-name="team_price"]').text();
+            var personal_plan = $(tr).find('td[data-name="personal_plan"]').text();
             var personal_price = $(tr).find('td[data-name="personal_price"]').text();
             var status = $(tr).find('td[data-name="state_status"]').attr('data-status');
 
             $('#state_id').val(state_id);
             $('#state_name').val(state_name);
             $('#state_short_name').val(short_name);
+            $('#team_plan option[value="' + team_plan + '"]').attr('selected', 'selected');
             $('#team_price').val(team_price);
+            $('#personal_plan option[value="' + personal_plan + '"]').attr('selected', 'selected');
             $('#personal_price').val(personal_price);
             if (status == 0) {
                 $('#state_status').attr('checked', false);
@@ -337,7 +456,7 @@ include('templates/default/header.php');
                     alert("While Activating States, Error Occurred, Please try again later.");
                 }
             })
-        })
+        });
 
         $('.deactivate_state').click(function () {
             var icon = $(this);
@@ -365,7 +484,7 @@ include('templates/default/header.php');
                     alert("While Deactivating States, Error Occurred, Please try again later.");
                 }
             })
-        })
+        });
 
         $('.remove_state').click(function () {
 
@@ -392,7 +511,7 @@ include('templates/default/header.php');
                     alert("While Removing States, Error Occurred, Please try again later.");
                 }
             })
-        })
+        });
 
         $('#edit_form').submit(function (e) {
 
@@ -415,7 +534,7 @@ include('templates/default/header.php');
                     alert("While Updating States, Error Occurred, Please try again later.");
                 }
             })
-        })
+        });
 
 
         $('#create_form').submit(function (e) {
@@ -440,6 +559,13 @@ include('templates/default/header.php');
                     alert("While Adding new State, Error Occurred, Please try again later.");
                 }
             })
-        })
+        });
+
+        $('.plan').change(function () {
+            var price = $(this).find('option:selected').data('price');
+            var price_obj_id = $(this).data('htarget');
+            $('#' + price_obj_id).val(price);
+        });
+
     </script>
 <?php include('templates/default/footer.php'); ?>

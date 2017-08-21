@@ -44,7 +44,9 @@ if (!empty($_POST['action'])) {
         $state_id = $_POST['state_id'];
         $state_name = $_POST['state_name'];
         $state_short_name = $_POST['state_short_name'];
+        $team_plan = $_POST['team_plan'];
         $team_price = $_POST['team_price'];
+        $personal_plan = $_POST['personal_plan'];
         $personal_price = $_POST['personal_price'];
 
         $state_status = TRUE;
@@ -56,7 +58,9 @@ if (!empty($_POST['action'])) {
         $state_data = array(
             'name' => $state_name,
             'short_name' => $state_short_name,
+            'team_plan' => $team_plan,
             'team_price' => $team_price,
+            'personal_plan' => $personal_plan,
             'personal_price' => $personal_price,
             'status' => $state_status
         );
@@ -72,7 +76,9 @@ if (!empty($_POST['action'])) {
 
         $state_name = $_POST['new_state_name'];
         $state_short_name = $_POST['new_state_short_name'];
+        $team_plan = $_POST['new_team_plan'];
         $team_price = $_POST['new_team_price'];
+        $personal_plan = $_POST['new_personal_plan'];
         $personal_price = $_POST['new_personal_price'];
 
         $state_status = TRUE;
@@ -84,7 +90,9 @@ if (!empty($_POST['action'])) {
         $state_data = array(
             'name' => $state_name,
             'short_name' => $state_short_name,
+            'team_plan' => $team_plan,
             'team_price' => $team_price,
+            'personal_plan' => $personal_plan,
             'personal_price' => $personal_price,
             'status' => $state_status
         );

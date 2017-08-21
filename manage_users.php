@@ -112,7 +112,6 @@ if (!empty($_GET['action'])) {
             echo $result;
         }
 
-
     } else if ($action == 'make_customer_user') {
 
         $user_id = $_GET['user_id'];
@@ -121,6 +120,66 @@ if (!empty($_GET['action'])) {
             echo 'success';
         } else {
             echo $result;
+        }
+
+    } else if ($action == 'create_user') {
+
+        $username = $_GET['username'];
+        $email = $_GET['email'];
+        $password = $_GET['password'];
+        $password_2 = $_GET['password_2'];
+        $first_name = $_GET['first_name'];
+        $last_name = $_GET['last_name'];
+        $phone = $_GET['phone'];
+        $organization = $_GET['organization'];
+        $invite_code = $_GET['invite_code'];
+
+        /*$extra_users = $invited ? 0 : $_POST['extra_users'];
+            if(isset($_POST['locations']) && is_array($_POST['locations'])) {
+                foreach($_POST['locations'] as $location) {
+                    $state_check = isset($mainClass->getStates()[$location - 1]);
+                    if($state_check)
+                        array_push($locations, $location);
+                }
+            }*/
+
+        /*if(!$extra_users_check)
+            $errorMsgExtraUsers = 'Invalid amount of extra users.';
+
+        if(!$locations_check)
+            $errorMsgLocation = 'You must select at least one location.';*/
+
+
+        //if($username_check && $email_check && $password_check && $password == $password_2 && $extra_users_check && $locations_check) {
+
+        if (!$invite_code) {
+            //$userRegistration = $userClass->userRegistration($username, $password, $email, $extra_users, '');
+            $userRegistration = $userClass->userRegistration($username, $password, $email, $first_name, $last_name, '', $phone, $organization);
+        } else {
+            //$userRegistration = $userClass->userRegistration($username, $password, $email, $extra_users, $invite_code);
+            $userRegistration = $userClass->userRegistration($username, $password, $email, $first_name, $last_name, $invite_code, $phone, $organization);
+        }
+
+        if ($userRegistration === 'INVALID_EMAIL_ADDRESS') {
+            $err_msg = 'Email is Invalid. Please use Valid Email.';
+            echo $err_msg;
+
+        } else if ($userRegistration === 'INVALID_INVITE_CODE') {
+            $err_msg = 'Invite code is invalid.';
+            echo $err_msg;
+        } else if ($userRegistration === 'USERNAME_ALREADY_EXISTS') {
+            $err_msg = 'Username is already in use.';
+            echo $err_msg;
+        } else if ($userRegistration === 'EMAIL_ALREADY_EXISTS') {
+            $err_msg = 'Email is already in use.';
+            echo $err_msg;
+
+        } else if ($userRegistration) {
+            /*
+             $uid = $userRegistration;
+              if(!$invited)
+                $userClass->addSubscriptionLocations($uid, $locations);*/
+            echo 'success';
         }
 
     }

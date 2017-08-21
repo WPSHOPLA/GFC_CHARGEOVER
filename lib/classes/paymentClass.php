@@ -369,6 +369,19 @@ class paymentClass
         return $cycle_name;
     }
 
+    /*Manage Plans*/
+
+    //get plans
+    public function getCOPlans()
+    {
+        $resp = $this->API->find('item', array('item_type:EQUALS:service'));
+        if (!$this->API->isError($resp)) {
+            return (object)array('status' => 'success', 'plans' => $resp->response);
+        } else {
+            return (object)array('status' => 'error', 'message' => $resp->message);
+        }
+    }
+
 }
 
 ?>

@@ -7,7 +7,7 @@ class mainClass
     {
         try {
             $db = getDB();
-            $stmt = $db->prepare("SELECT id, name, short_name, team_price, personal_price, status FROM states ORDER BY id ASC");
+            $stmt = $db->prepare("SELECT * FROM states ORDER BY id ASC");
 
             $stmt->execute();
             $data = $stmt->fetchAll(); //User data
@@ -29,7 +29,7 @@ class mainClass
     {
         try {
             $db = getDB();
-            $stmt = $db->prepare("SELECT id, name, short_name, team_price, personal_price, status FROM states where status=TRUE ORDER BY id ASC");
+            $stmt = $db->prepare("SELECT * FROM states where status=TRUE ORDER BY id ASC");
 
             $stmt->execute();
             $data = $stmt->fetchAll(); //User data
@@ -99,11 +99,13 @@ class mainClass
             $status = ($data['status']) ? TRUE : FALSE;
 
             $db = getDB();
-            $stmt = $db->prepare("UPDATE states SET name=:state_name,short_name=:short_name, team_price=:team_price, personal_price=:personal_price, status=:status WHERE id=:sid");
+            $stmt = $db->prepare("UPDATE states SET name=:state_name,short_name=:short_name, team_plan=:team_plan, team_price=:team_price, personal_plan=:personal_plan, personal_price=:personal_price, status=:status WHERE id=:sid");
             $stmt->bindParam("sid", $state_id, PDO::PARAM_INT);
             $stmt->bindParam("state_name", $data['name'], PDO::PARAM_STR);
             $stmt->bindParam("short_name", $data['short_name'], PDO::PARAM_STR);
+            $stmt->bindParam("team_plan", $data['team_plan'], PDO::PARAM_INT);
             $stmt->bindParam("team_price", $data['team_price'], PDO::PARAM_STR);
+            $stmt->bindParam("personal_plan", $data['personal_plan'], PDO::PARAM_INT);
             $stmt->bindParam("personal_price", $data['personal_price'], PDO::PARAM_STR);
             $stmt->bindParam("status", $status, PDO::PARAM_BOOL);
             $stmt->execute();
@@ -121,10 +123,12 @@ class mainClass
 
             $status = ($data['status']) ? TRUE : FALSE;
             $db = getDB();
-            $stmt = $db->prepare("INSERT INTO states(name, short_name, team_price, personal_price, status) VALUES (:state_name, :short_name, :team_price, :personal_price, :status)");
+            $stmt = $db->prepare("INSERT INTO states(name, short_name, team_plan, team_price, personal_plan, personal_price, status) VALUES (:state_name, :short_name, :team_plan, :team_price, :personal_plan, :personal_price, :status)");
             $stmt->bindParam("state_name", $data['name'], PDO::PARAM_STR);
             $stmt->bindParam("short_name", $data['short_name'], PDO::PARAM_STR);
+            $stmt->bindParam("team_plan", $data['team_plan'], PDO::PARAM_INT);
             $stmt->bindParam("team_price", $data['team_price'], PDO::PARAM_STR);
+            $stmt->bindParam("personal_plan", $data['personal_plan'], PDO::PARAM_INT);
             $stmt->bindParam("personal_price", $data['personal_price'], PDO::PARAM_STR);
             $stmt->bindParam("status", $status, PDO::PARAM_BOOL);
             $stmt->execute();

@@ -41,6 +41,18 @@ class userClass
             $invited_by = 0;
             $invited_by_data = null;
 
+            //check valid email address
+            $invalid = false;
+            $invalid_email_address_list = ['@gmail.com', '@hotmail.com', '@yahoo.com', '@aol.com'];
+
+            if (in_array($email, $invalid_email_address_list)) {
+                $invalid = true;
+            }
+
+            if ($invalid) {
+                return 'INVALID_EMAIL_ADDRESS';
+            }
+
             if ($invited) {
                 $st = $db->prepare("SELECT * FROM user_invites WHERE invite_code=:invite_code");
                 $st->bindParam("invite_code", $invite_code, PDO::PARAM_STR);
@@ -125,7 +137,7 @@ class userClass
 
                 $activation_code = base64_encode($uid);
                 //confirm url
-                $confirm_url = BASE_URL."manage_users.php?action=confirm_user&code=".$activation_code;
+                $confirm_url = BASE_URL . "manage_users.php?action=confirm_user&code=" . $activation_code;
 
                 $mail_subject = 'Welcome to GoFetchCode';
 
@@ -133,7 +145,7 @@ class userClass
                 $mail_content .= '\r\n';
                 $mail_content .= 'Log in to www.gofetchcode.com to look for regulation or code.';
                 $mail_content .= '\r\n';
-                $mail_content .= 'Please verify your email address by clicking this. <a href="'.$confirm_url.'" target="_blank">Confirm my Account</a>';
+                $mail_content .= 'Please verify your email address by clicking this. <a href="' . $confirm_url . '" target="_blank">Confirm my Account</a>';
                 $mail_content .= '\r\n\r\n';
                 $mail_content .= 'Do you have problems with this url? Contact out support team: info@gofetchcode.com';
 

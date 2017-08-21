@@ -2,6 +2,8 @@
 require('lib/init.php');
 requireSubscription();
 
+global $userClass, $userDetails;
+
 $countByStateArray = array();
 
 $filter_keyword = '';
@@ -298,7 +300,7 @@ include('templates/default/header.php');
 				//scrollToActive();
 			}
 			
-			//$('.result-block .overlay')[0].click();
+			//$('.result-block .overlay')[0].click();ubscription
 			
 			<?php if($view_bookmark) { ?>
 			
